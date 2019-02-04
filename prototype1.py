@@ -1,10 +1,13 @@
 # fungsi buat nyari nilai yang paling dekat ke 24 dalam suatu list
 def cari_solusi(listAngka) :
-    s = listAngka[0]
-    for a in listAngka :
-        if abs(24-a) < abs(24-listAngka[0]) :
-            s = a
-    return s
+    s = 24-listAngka[0]
+    hsl = listAngka[0]
+    for a in range(1,4) :
+        #26 24 25 25
+        if abs(24-listAngka[a]) < abs(s) :
+            s = 24-listAngka[a]
+            hsl = listAngka[a]
+    return hsl
 
 # fungsi operasi a dioperasikan b
 def op(char,a,b):
@@ -14,16 +17,23 @@ def op(char,a,b):
         return  (a-b)
     elif char == '*' :
         return (a*b)
-    elif char == '/' and b != 0:
+    elif char == '/':
         return (a/b)
     else :
         return 0
 
 #Memulai input program
-v=float(input())
-w=float(input())
-x=float(input())
-y=float(input())
+valid = False
+while not (valid) :
+    print("Input : ")
+    try:        
+        v,w,x,y = map(float, input().split())
+        if ((v>0 and w>0 and x>0 and y>0) and (v <=13 and w<=13 and x <=13 and y<=13)):
+            valid = True               
+        else :     
+            print("Input 4 integer [1..13] dipisah dengan spasi") 
+    except:
+        print("Input 4 integer [1..13] dipisah dengan spasi") 
 
 
 #4 angka yang diinput disimpan dalam list sementara
@@ -58,6 +68,7 @@ for a in range (1,4) :
         tempHasil[i]=op(b,sum,inputAngka[a])
         i=i+1
     sum = cari_solusi(tempHasil)
+    #print(tempHasil)
     if(sum == tempHasil[0]) :
         solusi = "%s + %s"%(solusi ,inputAngka[a])
     elif(sum == tempHasil[1]) :
@@ -68,4 +79,4 @@ for a in range (1,4) :
         solusi = "%s / %s"%(solusi ,inputAngka[a])
 
 
-print solusi, '=', sum
+print (solusi, '=', sum)
