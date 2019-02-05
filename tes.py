@@ -56,8 +56,8 @@ def gameStart():
     changeCard(templist,lblangka3,lblimg3)
     changeCard(templist,lblangka4,lblimg4)
     lblwelcome.configure(text="Sisa deck : "+str(len(templist)),font = ("Arial",8))
-    if (len(templist) == 0):
-        start()
+    #if (len(templist) == 0):
+    #    start()
 
 def resetGame():
     updateImg(lblimg1,0)
