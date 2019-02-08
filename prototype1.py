@@ -26,14 +26,14 @@ def op(char,a,b):
 valid = False
 while not (valid) :
     print("Input : ")
-    try:        
+    try:
         v,w,x,y = map(float, input().split())
-        if ((v>0 and w>0 and x>0 and y>0) and (v <=13 and w<=13 and x <=13 and y<=13)):
-            valid = True               
-        else :     
-            print("Input 4 integer [1..13] dipisah dengan spasi") 
+        if ((v>1 and w>0 and x>0 and y>0) and (v <=13 and w<=13 and x <=13 and y<=13)):
+            valid = True
+        else :
+            print("Input 4 integer [1..13] dipisah dengan spasi")
     except:
-        print("Input 4 integer [1..13] dipisah dengan spasi") 
+        print("Input 4 integer [1..13] dipisah dengan spasi")
 
 
 #4 angka yang diinput disimpan dalam list sementara
