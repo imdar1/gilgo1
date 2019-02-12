@@ -6,25 +6,12 @@ import prototype1
 
 # Saat tombol1 diklik
 def start():
-    #lblstat.grid(column=0,row=5)
     if (tombol1["text"]=="Start Game"):
-        #lblstat.configure(text="Game dimulai")
-        #lblstat.grid(row=0,column=2)
-        #lblstat.pack(anchor=E)
-        #lblwelcome.pack_forget()
-        lblimg.configure(text="Sisa deck : "+str(len(templist)),font = ("Arial",8))
-        tombol1.configure(text="Stop Game")
-        random.shuffle(templist)
         gameStart()
     else:
-        # reset cards
-        #lblstat.configure(text="Game berhenti")
-        lblimg['text'] = ""
-        #lblwelcome.configure(text="Welcome to 24 game solver",font = ("Arial",20))
-        #lblwelcome.pack()
         resetGame()
-        tombol1.configure(text="Start Game")
 
+# event saat deck diklik
 def clickdecks(event):
     if (len(templist)>0 and tombol1["text"]=="Stop Game"):
         gameStart()
@@ -44,7 +31,6 @@ def updateImg(lbl,idx):
     imgtmp = Image.open(cardsname[idx])
     imgtmp = imgtmp.resize((90, 137), Image.ANTIALIAS)
     imgtktmp = ImageTk.PhotoImage(imgtmp)
-    #lbl["image"] = imgtmp
     lbl.configure(image=imgtktmp)
     lbl.image = imgtktmp
 
@@ -54,20 +40,22 @@ def changeCard(list,lbl, lblimg):
     lbl.configure(text=str(idxtoval(idx)))
 
 def gameStart():
-    changeCard(templist,lblangka1,lblimg1)
+    random.shuffle(templist)
+    tombol1.configure(text="Stop Game")
+    changeCard(templist,lblangka1,lblimg1)    
     changeCard(templist,lblangka2,lblimg2)
     changeCard(templist,lblangka3,lblimg3)
     changeCard(templist,lblangka4,lblimg4)
     lblimg.configure(text="Sisa deck : "+str(len(templist)),font = ("Arial",8))
     lblsolusi["text"] = "Solusi : "+prototype1.solution(int(lblangka1["text"]),int(lblangka2["text"]),int(lblangka3["text"]),int(lblangka4["text"]))
-    #if (len(templist) == 0):
-    #    start()
 
 def resetGame():
+    tombol1.configure(text="Start Game")
     updateImg(lblimg1,0)
     updateImg(lblimg2,0)
     updateImg(lblimg3,0)
     updateImg(lblimg4,0)
+    lblimg['text'] = ""
     lblangka1["text"] =""
     lblangka2["text"] =""
     lblangka3["text"] =""
@@ -75,10 +63,9 @@ def resetGame():
     lblsolusi["text"] =""
     global templist
     templist = [i for i in range(1,53) ]
-    #templist.update([i for i in range(1,53) ])
 
 
-
+# Driver
 cardsname = list(map(concatdir ,("red_back.png","AC.png","2C.png","3C.png","4C.png","5C.png",
                                 "6C.png","7C.png","8C.png","9C.png","10C.png","JC.png","QC.png","KC.png",
                                 "AD.png","2D.png","3D.png","4D.png","5D.png","6D.png","7D.png","8D.png",
@@ -145,14 +132,9 @@ lblangka2.place(relx =0.4, rely= 0.9, anchor = CENTER)
 lblangka3.place(relx =0.6, rely= 0.9, anchor = CENTER)
 lblangka4.place(relx =0.8, rely= 0.9, anchor = CENTER)
 
-# Label selamat datang
-#lblwelcome = ttk.Label(framegame,text="",style='my.TLabel')
-#lblwelcome.pack()
-
 # Label solusi
 lblsolusi = ttk.Label(framegame,text="",font = ("Cambria",20),style='my.TLabel')
 lblsolusi.pack(side = BOTTOM)
-#lblstat = ttk.Label(framemenu,text="", font = ("Arial",12))
 
 # Tombol
 tombol1 = ttk.Button(framemenu, text = "Start Game", style='my.TButton',command=start)
