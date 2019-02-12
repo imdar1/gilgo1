@@ -2,7 +2,6 @@ def cari_solusi(listAngka) :
     s = 24-listAngka[0]
     hsl = listAngka[0]
     for a in range(1,4) :
-        #26 24 25 25
         if abs(24-listAngka[a]) < abs(s) :
             s = 24-listAngka[a]
             hsl = listAngka[a]
@@ -21,6 +20,8 @@ def op(char,a,b):
     else :
         return 0
 
+#def grouping(solusi):
+    #ada 4 kasus, yaitu abcd, (ab)cd, (abc)d dan ((ab)c)d
 def solution(v,w,x,y) :
 
     #4 angka yang diinput disimpan dalam list sementara
@@ -55,13 +56,22 @@ def solution(v,w,x,y) :
             tempHasil[i]=op(b,sum,inputAngka[a])
             i=i+1
         sum = cari_solusi(tempHasil)
-        #print(tempHasil)
         if(sum == tempHasil[0]) :
             solusi = "%s+%s"%(solusi ,inputAngka[a])
+            plusminus = True
         elif(sum == tempHasil[1]) :
             solusi = "%s-%s"%(solusi ,inputAngka[a])
+            plusminus = True
         elif(sum == tempHasil[2]) :
-            solusi = "%s*%s"%(solusi ,inputAngka[a])
+            if (a >=2 and plusminus):
+                solusi = "(%s)*%s"%(solusi ,inputAngka[a])
+            else:
+                solusi = "%s*%s"%(solusi ,inputAngka[a])
+            plusminus = False
         elif(sum == tempHasil[3]) :
-            solusi = "%s/%s"%(solusi ,inputAngka[a])
+            if (a >=2 and plusminus):
+                solusi = "(%s)/%s"%(solusi ,inputAngka[a])
+            else:
+                solusi = "%s/%s"%(solusi ,inputAngka[a])
+            plusminus = False
     return (solusi)
