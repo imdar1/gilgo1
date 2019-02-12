@@ -2,7 +2,7 @@ from tkinter import *
 from tkinter import ttk
 from PIL import ImageTk, Image
 import random
-import prototype1
+import beta
 
 # Saat tombol1 diklik
 def start():
@@ -47,7 +47,7 @@ def gameStart():
     changeCard(templist,lblangka3,lblimg3)
     changeCard(templist,lblangka4,lblimg4)
     lblimg.configure(text="Sisa deck : "+str(len(templist)),font = ("Arial",8))
-    lblsolusi["text"] = "Solusi : "+prototype1.solution(int(lblangka1["text"]),int(lblangka2["text"]),int(lblangka3["text"]),int(lblangka4["text"]))
+    lblsolusi["text"] = "Solusi : "+beta.solution(int(lblangka1["text"]),int(lblangka2["text"]),int(lblangka3["text"]),int(lblangka4["text"]))
 
 def resetGame():
     tombol1.configure(text="Start Game")
